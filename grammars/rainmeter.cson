@@ -1,0 +1,28 @@
+scopeName: 'source.rainmeter'
+name: 'Rainmeter'
+fileTypes: [
+  'ini'
+  'inc'
+]
+patterns: [
+  match: '^\\s*;.*$'
+  name: 'punctuation.definition.comment.rainmeter'
+,
+  begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
+  beginCaptures:
+    '1': {name: 'entity.name.function.special.rainmeter'}
+  end: '(?=\\s*\\[)'
+  patterns: [
+    match: '^\\s*([^=]*)(=)(.*?)$'
+    captures:
+      '1': {name: 'variable.rainmeter'}
+      '2': {name: 'punctuation.separator.key-value.rainmeter'}
+      '3': {name: 'string.rainmeter'}
+  ]
+,
+  match: '(?i)^\\s*\\[\\s*(?:Rainmeter|Metadata)\\s*\\]\\s*$'
+  name: 'entity.name.function.special.rainmeter'
+,
+  match: '(?!^\\s*\\[\\*.+?\\*\\]\\s*$)^\\s*\\[.+?\\]\\s*$'
+  name: 'entity.name.function.rainmeter'
+]

@@ -1,6 +1,6 @@
 {
-  "name": "language-lua",
-  "version": "0.9.4",
+  "name": "language-rainmeter",
+  "version": "0.0.0",
   "private": false,
   "author": "NighthawkSLO <jon.kuhar99@gmail.com>",
   "description": "Add syntax highlighting and snippets to Rainmeter files in Atom",
