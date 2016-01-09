@@ -5,24 +5,68 @@ fileTypes: [
   'inc'
 ]
 patterns: [
-  match: '^\\s*;.*$'
-  name: 'punctuation.definition.comment.rainmeter'
+  include: '#comments'
 ,
   begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
   beginCaptures:
-    '1': {name: 'entity.name.function.special.rainmeter'}
+    '1': {name: 'punctuation.definition.heading.special.rainmeter'}
   end: '(?=\\s*\\[)'
   patterns: [
-    match: '^\\s*([^=]*)(=)(.*?)$'
-    captures:
+    include: '#comments'
+  ,
+    begin: '^\\s*([^=]*)='
+    beginCaptures:
       '1': {name: 'variable.rainmeter'}
-      '2': {name: 'punctuation.separator.key-value.rainmeter'}
-      '3': {name: 'string.rainmeter'}
+    end: '$'
+    patterns: [
+      include: '#sectionVars'
+    ]
   ]
 ,
   match: '(?i)^\\s*\\[\\s*(?:Rainmeter|Metadata)\\s*\\]\\s*$'
-  name: 'entity.name.function.special.rainmeter'
+  name: 'punctuation.definition.heading.special.rainmeter'
 ,
   match: '(?!^\\s*\\[\\*.+?\\*\\]\\s*$)^\\s*\\[.+?\\]\\s*$'
-  name: 'entity.name.function.rainmeter'
+  name: 'punctuation.definition.heading.rainmeter'
 ]
+repository:
+  comments:
+    match: '^\\s*;.*$'
+    name: 'comment.rainmeter'
+  sectionVars:
+    begin: '\\[[^\\]:]+'
+    beginCaptures:
+      '0': {name: 'punctuation.definition.heading.rainmeter'}
+    end: '\\]'
+    endCaptures:
+      '0': {name: 'punctuation.definition.heading.rainmeter'}
+    patterns: [
+      match: '(?i):(|X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|%|\\/?\\d+|((((Min|Max)Value|%|\\/?\\d+),)+((Min|Max)Value|%|\\/?\\d+)))(?=])'
+      name: 'constant.numeric.rainmeter'
+    ,
+      match: '.*'
+      name: 'invalid.illegal.rainmeter'
+    ]
+  # enviromentVars:
+  #   patterns: [
+  #
+  #   ]
+  # builtInVars:
+  #   patterns: [
+  #
+  #   ]
+  # eventVars: [
+  #
+  #   ]
+  # variables:
+  #   patterns: [
+  #
+  #   ]
+  # bangs:
+  #   patterns: [
+  #
+  #   ]
+  # values:
+  #   patterns: [
+  #
+  #   ]
