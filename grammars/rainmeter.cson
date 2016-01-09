@@ -19,7 +19,7 @@ patterns: [
       '1': {name: 'variable.rainmeter'}
     end: '$'
     patterns: [
-      include: '#sectionVars'
+      include: '#allVars'
     ]
   ]
 ,
@@ -34,34 +34,43 @@ repository:
     match: '^\\s*;.*$'
     name: 'comment.rainmeter'
   sectionVars:
-    begin: '\\[[^\\]:]+'
+    begin: '(?!\\[\\*.+?\\*\\])\\[[^\\]\\s:]+'
     beginCaptures:
       '0': {name: 'punctuation.definition.heading.rainmeter'}
     end: '\\]'
     endCaptures:
       '0': {name: 'punctuation.definition.heading.rainmeter'}
     patterns: [
-      match: '(?i):(|X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|%|\\/?\\d+|((((Min|Max)Value|%|\\/?\\d+),)+((Min|Max)Value|%|\\/?\\d+)))(?=])'
+      match: '(?i):(\\s*|X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(\\s*,\\s*\\d+\\s*,?\\s*)?|\\s*\\d+\\s*)(?=])'
       name: 'constant.numeric.rainmeter'
     ,
       match: '.*'
       name: 'invalid.illegal.rainmeter'
     ]
-  # enviromentVars:
-  #   patterns: [
-  #
-  #   ]
-  # builtInVars:
-  #   patterns: [
-  #
-  #   ]
-  # eventVars: [
-  #
-  #   ]
-  # variables:
-  #   patterns: [
-  #
-  #   ]
+  enviromentVars:
+    match: '%[A-Za-z][0-9a-zA-Z_]+?%'
+    name: 'variable.special.rainmeter'
+  builtInVars:
+    match: '(?i)#@#|#PROGRAMDRIVE#|#PROGRAMPATH#|#SETTINGSPATH#|#SKINSPATH#|#PLUGINSPATH#|#ADDONSPATH#|#CURRENTPATH#|#ROOTCONFIGPATH#|#CURRENTFILE#|#CURRENTCONFIG#|#CURRENTSECTION#|#CURRENTCONFIGWIDTH#|#CURRENTCONFIGHEIGHT#|#CURRENTCONFIGX#|#CURRENTCONFIGY#|#[Pp]?WORKAREAX#|#[Pp]?WORKAREAY#|#[Pp]?WORKAREAWIDTH#|#[Pp]?WORKAREAHEIGHT#|#[PpVv]?SCREENAREAWIDTH#|#[PpVv]?SCREENAREAHEIGHT#|#CRLF#|#WORKAREAWIDTH#|#WORKAREAHEIGHT#|#[PpVv]?SCREENAREAX#|#[PpVv]?SCREENAREAY#|#WORKAREAX@\\d+#|#WORKAREAY@\\d+#|#WORKAREAWIDTH@\\d+#|#WORKAREAHEIGHT@\\d+#|#SCREENAREAX@\\d+#|#SCREENAREAY@\\d+#|#SCREENAREAWIDTH@\\d+#|#SCREENAREAHEIGHT@\\d+#'
+    name: 'variable.special.rainmeter'
+  eventVars:
+    match: '(?i)\\$(Mouse(X|Y)(:%)?|Userinput)\\$'
+    name: 'variable.special.rainmeter'
+  variables:
+    match: '(?!#\\*.+?\\*#)#[^#\\s]+#'
+    name: 'variable.rainmeter'
+  allVars:
+    patterns: [
+      include: '#sectionVars'
+    ,
+      include: '#enviromentVars'
+    ,
+      include: '#builtInVars'
+    ,
+      include: '#eventVars'
+    ,
+      include: '#variables'
+    ]
   # bangs:
   #   patterns: [
   #
