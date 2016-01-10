@@ -1,8 +1,10 @@
 @red: hsl(355, 65%, 65%);
 @blue: hsl(207, 82%, 66%);
 @green: hsl(95, 38%, 62%);
+@purple: hsl(286, 60%, 67%);
 @orange: hsl(29, 54%, 61%);
 @cyan: hsl(187, 47%, 55%);
+@deprecated: hsl(40, 60%, 70%);
 
 
 .source.rainmeter{
@@ -40,5 +42,17 @@
   .bang{
     color: @cyan;
     font-style: italic;
+  }
+
+  .deprecated.bang{
+    color: darken(@deprecated, 50%);
+    background-color: @deprecated;
+    font-style: normal;
+  }
+
+  .include{
+    color: @purple;
+    font-style: italic;
+    font-weight: bold;
   }
 }

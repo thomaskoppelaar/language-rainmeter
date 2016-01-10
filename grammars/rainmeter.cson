@@ -5,38 +5,46 @@ fileTypes: [
   'inc'
 ]
 patterns: [
-  {include: '#comments'}
+  {include: '#general'}
   begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
-  beginCaptures:
-    '1': {name: 'predefined.section.rainmeter'}
+  beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
   patterns: [
-    {include: '#comments'}
+    {include: '#general'}
     begin: '^\\s*([^=]*)='
-    beginCaptures:
-      '1': {name: 'variable.rainmeter'}
+    beginCaptures: {1: {name: 'variable.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
       {include: '#bangs'}
     ]
-  ],
+  ]
   {match: '(?i)^\\s*\\[\\s*(?:Rainmeter|Metadata)\\s*\\]\\s*$'
-  name: 'predefined.section.rainmeter'},
-  {match: '(?!^\\s*\\[\\*.+?\\*\\]\\s*$)^\\s*\\[.+?\\]\\s*$'
+  name: 'predefined.section.rainmeter'}
+  {match: '(?!^\\s*\\[\\*.+?\\*\\]\\s*$)^\\s*\\[[^\\[\\]\\s\\/!#\\"%\\$:]+?\\]\\s*$'
   name: 'section.rainmeter'}
 ]
 repository:
   comments:
     match: '^\\s*;.*$'
     name: 'comment.rainmeter'
+  include:
+    begin: '(?i)^\\s*(@include[^\\s=]*)='
+    beginCaptures: {1: {name: 'include.rainmeter'}}
+    end: '$'
+    patterns: [
+      {include: '#variables'}
+    ]
+  general:
+    patterns: [
+      {include: '#comments'}
+      {include: '#include'}
+    ]
   sectionVars:
-    begin: '(?!\\[\\*.+?\\*\\])\\[[^\\]\\s:]+'
-    beginCaptures:
-      '0': {name: 'section.variable.rainmeter'}
+    begin: '(?!\\[\\*.+?\\*\\])\\[[^\\[\\]\\s\\/!#\\"%\\$:]+'
+    beginCaptures: {0: {name: 'section.variable.rainmeter'}}
     end: '\\]'
-    endCaptures:
-      '0': {name: 'section.variable.rainmeter'}
+    endCaptures: {0: {name: 'section.variable.rainmeter'}}
     patterns: [
       {match: '(?i):(\\s*|X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(\\s*,\\s*\\d+\\s*,?\\s*)?|\\s*\\d+\\s*)(?=])'
       name: 'section.variable.arg.rainmeter'}
@@ -64,8 +72,13 @@ repository:
       {include: '#normalVars'}
     ]
   bangs:
-    match: '(?i)!(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)\\b'
-    name: 'bang.rainmeter'
+    patterns: [
+      {match: '(?i)!(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)\\b'
+      name: 'bang.rainmeter'}
+      {match: '(?i)!(Rainmeter(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)|Execute|(Rainmeter)?PluginBang)\\b'
+      name: 'deprecated.bang.rainmeter'}
+    ]
+
   # values:
   #   patterns: [
   #
