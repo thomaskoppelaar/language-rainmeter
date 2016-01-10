@@ -1,7 +1,44 @@
-.source.rainmeter .punctuation.definition.heading.special.rainmeter{
-  font-weight: bold;
-}
+@red: hsl(355, 65%, 65%);
+@blue: hsl(207, 82%, 66%);
+@green: hsl(95, 38%, 62%);
+@orange: hsl(29, 54%, 61%);
+@cyan: hsl(187, 47%, 55%);
 
-.source.rainmeter .variable.special.rainmeter{
-  font-style: italic;
+
+.source.rainmeter{
+  .section,
+  .predefined.section{
+    color: @blue;
+  }
+
+  .predefined.section{
+    font-weight: bold;
+  }
+
+  .variable,
+  .predefined.variable{
+    color: @red;
+  }
+
+  .predefined.variable{
+    font-style: italic;
+  }
+
+  .section.variable{
+    color: @green;
+  }
+
+  .section.variable.arg{
+    color: @orange;
+  }
+
+  .invalid{
+    color: white;
+    background-color: hsl(0, 70%, 60%);
+  }
+
+  .bang{
+    color: @cyan;
+    font-style: italic;
+  }
 }

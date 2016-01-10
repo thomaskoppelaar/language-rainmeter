@@ -5,29 +5,26 @@ fileTypes: [
   'inc'
 ]
 patterns: [
-  include: '#comments'
-,
+  {include: '#comments'}
   begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
   beginCaptures:
-    '1': {name: 'punctuation.definition.heading.special.rainmeter'}
+    '1': {name: 'predefined.section.rainmeter'}
   end: '(?=\\s*\\[)'
   patterns: [
-    include: '#comments'
-  ,
+    {include: '#comments'}
     begin: '^\\s*([^=]*)='
     beginCaptures:
       '1': {name: 'variable.rainmeter'}
     end: '$'
     patterns: [
-      include: '#allVars'
+      {include: '#variables'}
+      {include: '#bangs'}
     ]
-  ]
-,
-  match: '(?i)^\\s*\\[\\s*(?:Rainmeter|Metadata)\\s*\\]\\s*$'
-  name: 'punctuation.definition.heading.special.rainmeter'
-,
-  match: '(?!^\\s*\\[\\*.+?\\*\\]\\s*$)^\\s*\\[.+?\\]\\s*$'
-  name: 'punctuation.definition.heading.rainmeter'
+  ],
+  {match: '(?i)^\\s*\\[\\s*(?:Rainmeter|Metadata)\\s*\\]\\s*$'
+  name: 'predefined.section.rainmeter'},
+  {match: '(?!^\\s*\\[\\*.+?\\*\\]\\s*$)^\\s*\\[.+?\\]\\s*$'
+  name: 'section.rainmeter'}
 ]
 repository:
   comments:
@@ -36,45 +33,39 @@ repository:
   sectionVars:
     begin: '(?!\\[\\*.+?\\*\\])\\[[^\\]\\s:]+'
     beginCaptures:
-      '0': {name: 'punctuation.definition.heading.rainmeter'}
+      '0': {name: 'section.variable.rainmeter'}
     end: '\\]'
     endCaptures:
-      '0': {name: 'punctuation.definition.heading.rainmeter'}
+      '0': {name: 'section.variable.rainmeter'}
     patterns: [
-      match: '(?i):(\\s*|X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(\\s*,\\s*\\d+\\s*,?\\s*)?|\\s*\\d+\\s*)(?=])'
-      name: 'constant.numeric.rainmeter'
-    ,
-      match: '.*'
-      name: 'invalid.illegal.rainmeter'
+      {match: '(?i):(\\s*|X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(\\s*,\\s*\\d+\\s*,?\\s*)?|\\s*\\d+\\s*)(?=])'
+      name: 'section.variable.arg.rainmeter'}
+      {match: '[^\\]\\n]*'
+      name: 'invalid.rainmeter'}
     ]
   enviromentVars:
     match: '%[A-Za-z][0-9a-zA-Z_]+?%'
-    name: 'variable.special.rainmeter'
+    name: 'predefined.variable.rainmeter'
   builtInVars:
     match: '(?i)#@#|#PROGRAMDRIVE#|#PROGRAMPATH#|#SETTINGSPATH#|#SKINSPATH#|#PLUGINSPATH#|#ADDONSPATH#|#CURRENTPATH#|#ROOTCONFIGPATH#|#CURRENTFILE#|#CURRENTCONFIG#|#CURRENTSECTION#|#CURRENTCONFIGWIDTH#|#CURRENTCONFIGHEIGHT#|#CURRENTCONFIGX#|#CURRENTCONFIGY#|#[Pp]?WORKAREAX#|#[Pp]?WORKAREAY#|#[Pp]?WORKAREAWIDTH#|#[Pp]?WORKAREAHEIGHT#|#[PpVv]?SCREENAREAWIDTH#|#[PpVv]?SCREENAREAHEIGHT#|#CRLF#|#WORKAREAWIDTH#|#WORKAREAHEIGHT#|#[PpVv]?SCREENAREAX#|#[PpVv]?SCREENAREAY#|#WORKAREAX@\\d+#|#WORKAREAY@\\d+#|#WORKAREAWIDTH@\\d+#|#WORKAREAHEIGHT@\\d+#|#SCREENAREAX@\\d+#|#SCREENAREAY@\\d+#|#SCREENAREAWIDTH@\\d+#|#SCREENAREAHEIGHT@\\d+#'
-    name: 'variable.special.rainmeter'
+    name: 'predefined.variable.rainmeter'
   eventVars:
     match: '(?i)\\$(Mouse(X|Y)(:%)?|Userinput)\\$'
-    name: 'variable.special.rainmeter'
-  variables:
+    name: 'predefined.variable.rainmeter'
+  normalVars:
     match: '(?!#\\*.+?\\*#)#[^#\\s]+#'
     name: 'variable.rainmeter'
-  allVars:
+  variables:
     patterns: [
-      include: '#sectionVars'
-    ,
-      include: '#enviromentVars'
-    ,
-      include: '#builtInVars'
-    ,
-      include: '#eventVars'
-    ,
-      include: '#variables'
+      {include: '#sectionVars'}
+      {include: '#enviromentVars'}
+      {include: '#builtInVars'}
+      {include: '#eventVars'}
+      {include: '#normalVars'}
     ]
-  # bangs:
-  #   patterns: [
-  #
-  #   ]
+  bangs:
+    match: '(?i)!(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)\\b'
+    name: 'bang.rainmeter'
   # values:
   #   patterns: [
   #
