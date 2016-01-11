@@ -6,7 +6,7 @@ fileTypes: [
 ]
 patterns: [
   {include: '#general'}
-  begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
+  {begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
   beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
   patterns: [
@@ -17,12 +17,57 @@ patterns: [
     patterns: [
       {include: '#variables'}
       {include: '#bangs'}
+      {include: '#math'}
     ]
-  ]
-  {match: '(?i)^\\s*\\[\\s*(?:Rainmeter|Metadata)\\s*\\]\\s*$'
-  name: 'predefined.section.rainmeter'}
-  {match: '(?!^\\s*\\[\\*.+?\\*\\]\\s*$)^\\s*\\[[^\\[\\]\\s\\/!#\\"%\\$:]+?\\]\\s*$'
-  name: 'section.rainmeter'}
+  ]}
+  {begin: '(?i)^\\s*(\\[\\s*Rainmeter\\s*\\])\\s*$'
+  beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
+  end: '(?=\\s*\\[)'
+  patterns: [
+    {include: '#general'}
+    {include: '#meterActionOptions'}
+    {begin: '(?i)^\\s*(On(Refresh|Close|(Un)?Focus|Wake)Action|(?!ContextAction1\\s*=)ContextAction\\d*)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {include: '#variables'}
+      {include: '#bangs'}
+      {include: '#math'}
+    ]}
+    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Group|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!(ContextTitle|BlurRegion)1\\s*=)(ContextTitle|BlurRegion)\\d*|Blur)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {include: '#variables'}
+      {include: '#math'}
+    ]}
+  ]}
+  {begin: '(?i)^\\s*(\\[\\s*Metadata\\s*\\])\\s*$'
+  beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
+  end: '(?=\\s*\\[)'
+  patterns: [
+    {include: '#general'}
+    {begin: '(?i)^\\s*(Name|Author|Information|Version|License)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {include: '#variables'}
+    ]}
+  ]}
+  {begin: '(?i)(?!^\\s*\\[(\\*.+?\\*|Rainmeter|Metadata|Variables)\\]\\s*$)^\\s*\\[[^\\[\\]\\s\\/!#\\"%\\$:]+?\\]\\s*$'
+  beginCaptures: {0: {name: 'section.rainmeter'}}
+  end: '(?=\\s*\\[)'
+  patterns: [
+    {include: '#general'}
+    {begin: '^\\s*([^\\[\\]\\s\\/!#\\"%\\$:=]+)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {include: '#variables'}
+      {include: '#bangs'}
+      {include: '#math'}
+      ]}
+    ]}
 ]
 repository:
   comments:
@@ -30,7 +75,7 @@ repository:
     name: 'comment.rainmeter'
   include:
     begin: '(?i)^\\s*(@include[^\\s=]*)='
-    beginCaptures: {1: {name: 'include.rainmeter'}}
+    beginCaptures: {1: {name: 'option.include.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
@@ -73,13 +118,27 @@ repository:
     ]
   bangs:
     patterns: [
-      {match: '(?i)!(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)\\b'
+      {match: '(?i)!(Set(Clip|Wallpaper)|About|Manage|TrayMenu|Log|ResetStats|LoadLayout|RefreshApp|Quit|SetOption(Group)?|WriteKeyValue|SetVariable(Group)?|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)\\b'
       name: 'bang.rainmeter'}
       {match: '(?i)!(Rainmeter(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)|Execute|(Rainmeter)?PluginBang)\\b'
       name: 'deprecated.bang.rainmeter'}
     ]
+  math:
+    patterns: [
+      {match: '(?i)\\b(((a)?(tan|sin|cos))|abs|exp|log|ln|sqrt|sgn|frac|trunc|floor|ceil|round|rad)\\s*(?=\\()'
+      name: 'math.function.rainmeter'}
+      {match: '(?i)\\b(PI|E|RANDOM)\\b'
+      name: 'math.constant.rainmeter'}
+    ]
 
-  # values:
-  #   patterns: [
-  #
-  #   ]
+  meterActionOptions:
+    patterns: [
+      {begin: '(?i)^\\s*(((Left|Right|Middle|X(1|2))Mouse(Up|Down|DoubleClick)|Mouse(Over|Leave|Scroll(Up|Down|Left|Right))|OnUpdate)Action|MouseActionCursor(Name)?)\\s*='
+      beginCaptures: {1: {name: 'option.rainmeter'}}
+      end: '$'
+      patterns: [
+        {include: '#variables'}
+        {include: '#bangs'}
+      ]
+      }
+    ]
