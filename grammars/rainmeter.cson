@@ -119,16 +119,16 @@ repository:
   bangs:
     patterns: [
       {match: '(?i)!(Set(Clip|Wallpaper)|About|Manage|TrayMenu|Log|ResetStats|LoadLayout|RefreshApp|Quit|SetOption(Group)?|WriteKeyValue|SetVariable(Group)?|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)\\b'
-      name: 'bang.rainmeter'}
+      name: 'support.function.rainmeter'}
       {match: '(?i)!(Rainmeter(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)|Execute|(Rainmeter)?PluginBang)\\b'
-      name: 'deprecated.bang.rainmeter'}
+      name: 'deprecated.function.rainmeter'}
     ]
   math:
     patterns: [
       {match: '(?i)\\b(((a)?(tan|sin|cos))|abs|exp|log|ln|sqrt|sgn|frac|trunc|floor|ceil|round|rad)\\s*(?=\\()'
-      name: 'math.function.rainmeter'}
+      name: 'support.function.rainmeter'}
       {match: '(?i)\\b(PI|E|RANDOM)\\b'
-      name: 'math.constant.rainmeter'}
+      name: 'support.function.constant.rainmeter'}
     ]
 
   meterActionOptions:
