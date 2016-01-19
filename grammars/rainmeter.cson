@@ -1,3 +1,4 @@
+# general options
 scopeName: 'source.rainmeter'
 name: 'Rainmeter'
 fileTypes: [
@@ -5,7 +6,10 @@ fileTypes: [
   'inc'
 ]
 patterns: [
+  # @include and comments
   {include: '#general'}
+
+  # Variables section
   {begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
   beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
@@ -20,6 +24,8 @@ patterns: [
       {include: '#math'}
     ]
   ]}
+
+  # Rainmeter section
   {begin: '(?i)^\\s*(\\[\\s*Rainmeter\\s*\\])\\s*$'
   beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
@@ -42,6 +48,8 @@ patterns: [
       {include: '#math'}
     ]}
   ]}
+
+  # Metadata section
   {begin: '(?i)^\\s*(\\[\\s*Metadata\\s*\\])\\s*$'
   beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
@@ -54,6 +62,8 @@ patterns: [
       {include: '#variables'}
     ]}
   ]}
+
+  # Meters and Measures
   {begin: '(?i)(?!^\\s*\\[(\\*.+?\\*|Rainmeter|Metadata|Variables)\\]\\s*$)^\\s*\\[[^\\[\\]\\s\\/!#\\"%\\$:]+?\\]\\s*$'
   beginCaptures: {0: {name: 'section.rainmeter'}}
   end: '(?=\\s*\\[)'
@@ -69,10 +79,16 @@ patterns: [
       ]}
     ]}
 ]
+
+# Storage
 repository:
+
+  # Comments
   comments:
     match: '^\\s*;.*$'
     name: 'comment.rainmeter'
+
+  # @include
   include:
     begin: '(?i)^\\s*(@include[^\\s=]*)='
     beginCaptures: {1: {name: 'option.include.rainmeter'}}
@@ -80,11 +96,15 @@ repository:
     patterns: [
       {include: '#variables'}
     ]
+
+  # Comments and @include merged
   general:
     patterns: [
       {include: '#comments'}
       {include: '#include'}
     ]
+
+  # Section variables and their arguments
   sectionVars:
     begin: '(?!\\[\\*.+?\\*\\])\\[[^\\[\\]\\s\\/!#\\"%\\$:]+'
     beginCaptures: {0: {name: 'section.variable.rainmeter'}}
@@ -96,18 +116,28 @@ repository:
       {match: '[^\\]\\n]*'
       name: 'invalid.rainmeter'}
     ]
+
+  # Enviroment variables
   enviromentVars:
     match: '%[A-Za-z][0-9a-zA-Z_]+?%'
     name: 'predefined.variable.rainmeter'
+
+  # Built in variables
   builtInVars:
     match: '(?i)#@#|#PROGRAMDRIVE#|#PROGRAMPATH#|#SETTINGSPATH#|#SKINSPATH#|#PLUGINSPATH#|#ADDONSPATH#|#CURRENTPATH#|#ROOTCONFIGPATH#|#CURRENTFILE#|#CURRENTCONFIG#|#CURRENTSECTION#|#CURRENTCONFIGWIDTH#|#CURRENTCONFIGHEIGHT#|#CURRENTCONFIGX#|#CURRENTCONFIGY#|#[Pp]?WORKAREAX#|#[Pp]?WORKAREAY#|#[Pp]?WORKAREAWIDTH#|#[Pp]?WORKAREAHEIGHT#|#[PpVv]?SCREENAREAWIDTH#|#[PpVv]?SCREENAREAHEIGHT#|#CRLF#|#WORKAREAWIDTH#|#WORKAREAHEIGHT#|#[PpVv]?SCREENAREAX#|#[PpVv]?SCREENAREAY#|#WORKAREAX@\\d+#|#WORKAREAY@\\d+#|#WORKAREAWIDTH@\\d+#|#WORKAREAHEIGHT@\\d+#|#SCREENAREAX@\\d+#|#SCREENAREAY@\\d+#|#SCREENAREAWIDTH@\\d+#|#SCREENAREAHEIGHT@\\d+#'
     name: 'predefined.variable.rainmeter'
+
+  # Event variables
   eventVars:
     match: '(?i)\\$(Mouse(X|Y)(:%)?|Userinput)\\$'
     name: 'predefined.variable.rainmeter'
+
+  # All other - normal variables
   normalVars:
     match: '(?!#\\*.+?\\*#)#[^#\\s]+#'
     name: 'variable.rainmeter'
+
+  # All the variables combined
   variables:
     patterns: [
       {include: '#sectionVars'}
@@ -116,13 +146,19 @@ repository:
       {include: '#eventVars'}
       {include: '#normalVars'}
     ]
+
+  # All Bangs
   bangs:
     patterns: [
+      # Normal
       {match: '(?i)!(Set(Clip|Wallpaper)|About|Manage|TrayMenu|Log|ResetStats|LoadLayout|RefreshApp|Quit|SetOption(Group)?|WriteKeyValue|SetVariable(Group)?|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)\\b'
       name: 'support.function.rainmeter'}
+      # Deprecated
       {match: '(?i)!(Rainmeter(SetClip|SetWallpaper|About|Manage|Log|LsBoxHook|ResetStats|TrayMenu|RefreshApp|Quit|(SetOptionGroup?)|WriteKeyValue|(SetVariableGroup?)|Toggle(Group|Config)?|Move(Meter)?|DeactivateConfig(Group)?|ActivateConfig|Refresh(Group)?|Redraw(Group)?|SetTransparency(Group)?|(Show|Hide|Toggle)Fade(Group)?|(Show|Hide|Toggle|Add|Remove)Blur|Draggable(Group)?|ZPos(Group)?|KeepOnScreen(Group)?|ClickThrough(Group)?|SnapEdges(Group)?|SkinMenu|(Show|Hide|Toggle|Update)Meter(Group)?|((Dis|En)able|Toggle|Update)Measure(Group)?|CommandMeasure|(Un|Toggle)?PauseMeasure|(Show|Hide)(Group)?|Update|LoadLayout)|Execute|(Rainmeter)?PluginBang)\\b'
       name: 'deprecated.function.rainmeter'}
     ]
+
+  # All math functions and constants
   math:
     patterns: [
       {match: '(?i)\\b(((a)?(tan|sin|cos))|abs|exp|log|ln|sqrt|sgn|frac|trunc|floor|ceil|round|rad)\\s*(?=\\()'
@@ -131,6 +167,7 @@ repository:
       name: 'support.function.constant.rainmeter'}
     ]
 
+  # All options that require bangs
   meterActionOptions:
     patterns: [
       {begin: '(?i)^\\s*(((Left|Right|Middle|X(1|2))Mouse(Up|Down|DoubleClick)|Mouse(Over|Leave|Scroll(Up|Down|Left|Right))|OnUpdate)Action|MouseActionCursor(Name)?)\\s*='
