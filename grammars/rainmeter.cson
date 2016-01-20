@@ -106,16 +106,11 @@ repository:
 
   # Section variables and their arguments
   sectionVars:
-    begin: '(?!\\[\\*.+?\\*\\])\\[[\\w\\d_]+'
-    beginCaptures: {0: {name: 'section.variable.rainmeter'}}
-    end: '\\]'
-    endCaptures: {0: {name: 'section.variable.rainmeter'}}
-    patterns: [
-      {match: '(?i):(\\s*|X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(\\s*,\\s*\\d+\\s*,?\\s*)?|\\s*\\d+\\s*)(?=])'
-      name: 'section.variable.arg.rainmeter'}
-      {match: '[^\\]\\n]*'
-      name: 'invalid.rainmeter'}
-    ]
+    match: '(?!\\[\\*.+?\\*\\])(\\[[\\w\\d_]+)(:(|(?i)X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(,\\d+,?)?|\\d+))?(\\])'
+    captures:
+      1: {name: 'section.variable.rainmeter'}
+      2: {name: 'section.variable.arg.rainmeter'}
+      7: {name: 'section.variable.rainmeter'}
 
   # Enviroment variables
   enviromentVars:
