@@ -139,22 +139,26 @@ patterns: [
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
+    # 1/0 options
     {match: '(?i)^\\s*(Hidden|AntiAlias|Greyscale|UseExifOrientation|ToolTipType|ToolTipHidden|Flip|BitmapZeroFrame|BitmapExtend|Tile|HorizontalLines|Solid|ControlAngle|Percentual|InvertMeasure|DynamicVariables|Disabled|Paused|IfConditionMode|IfMatchMode|RegExpSubstitute|UpdateRandom|UniqueRandom|Total|Label|Type|IgnoreRemovable|DiskQuota|Cumulative|DaylightSavingTime|AddDaysToHours)\\s*=\\s*"?([0-1])"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
+    # All other options
     {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Group|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Title|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|Text|(Pre|Post)fix|FontFace|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1|InlinePattern1)Inline(Setting|Pattern)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(H?Key|Value)|ScriptFile|String|TimeStamp|DaylightSavingTime|AddDaysToHours)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
     ]}
+    # Number options
     {begin: '(?i)^\\s*(X|Y|W|H|Padding|UpdateDivider|GradientAngle|TransformationMatrix|Image(Crop|Alpha|Rotate)|ColorMatrix[1-5]|ToolTipWidth|BarBorder|Bitmap(Transition)?Frames|Bitmap(Digits|Separation)|(Primary|Secondary|Both)Image(Crop|Alpha|Rotate|ColorMatrix[1-5])|ScaleMargins|MaskImageRotate|Line(Count|Width|Length)|(?!Scale1)Scale\\d*|Offset(X|Y)|(Start|Rotation)Angle|ValueRemainder|(Start|Length)Shift|FontSize|ClipString(W|H)|Angle|NumOfDecimals|(Max|Min)Value|AverageSize|If(Above|Below|Equal)Value|(?!IfCondition1)IfCondition\\d*|(Low|High)Bound|(Start|End)Value|Increment|LoopCount|SecondsValue)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
       {include: '#math'}
+    # Color options
     ]}
     {begin: '(?i)^\\s*(SolidColor2?|ImageTint|(Bar|Primary|Secondary|Both|HorizontalLine|Font)Color|(?!LineColor1)LineColor\\d*)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
