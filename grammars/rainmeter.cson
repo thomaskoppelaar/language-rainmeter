@@ -106,7 +106,7 @@ repository:
 
   # Section variables and their arguments
   sectionVars:
-    match: '(?!\\[\\*.+?\\*\\])(\\[[\\w\\d_]+)(:(|(?i)X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(,\\d+,?)?|\\d+))?(\\])'
+    match: '(\\[[\\w\\d_]+)(:(|(?i)X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(,\\d+,?)?|\\d+))?(\\])'
     captures:
       1: {name: 'section.variable.rainmeter'}
       2: {name: 'section.variable.arg.rainmeter'}
