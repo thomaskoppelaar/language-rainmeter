@@ -165,7 +165,7 @@ patterns: [
       {include: '#math'}
     # Color options
     ]}
-    {begin: '(?i)^\\s*(SolidColor2?|ImageTint|(Bar|Primary|Secondary|Both|HorizontalLine|Font)Color|(?!LineColor1)LineColor\\d*)\\s*='
+    {begin: '(?i)^\\s*(SolidColor2?|ImageTint|(Bar|Primary|Secondary|Both|HorizontalLine|Font(Effect)?)Color|(?!LineColor1)LineColor\\d*)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
