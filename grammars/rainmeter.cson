@@ -156,9 +156,9 @@ repository:
   # All math functions and constants
   math:
     patterns: [
-      {match: '(?i)\\b(((a)?(tan|sin|cos))|abs|exp|log|ln|sqrt|sgn|frac|trunc|floor|ceil|round|rad)\\s*(?=\\()'
+      {match: '(?i)\\b(((a)?(tan|sin|cos))|abs|exp|log|ln|sqrt|sgn|frac|trunc|floor|ceil|round|rad|min|max|clamp)\\s*(?=\\()'
       name: 'support.function.rainmeter'}
-      {match: '(?i)\\b(PI|E|RANDOM)\\b'
+      {match: '(?i)\\b(PI|E)\\b'
       name: 'support.function.constant.rainmeter'}
     ]
 
