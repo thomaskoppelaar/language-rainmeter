@@ -69,15 +69,63 @@ patterns: [
   end: '(?=^\\s*\\[)'
   patterns: [
     {include: '#general'}
-    {begin: '^\\s*([^\\[\\]\\s\\/!#\\"%\\$:=]+)\\s*='
-    beginCaptures: {1: {name: 'option.rainmeter'}}
-    end: '$'
-    patterns: [
-      {include: '#variables'}
-      {include: '#bangs'}
-      {include: '#math'}
-      ]}
-    ]}
+    {include: '#meterActionOptions'}
+    # Meter
+    {match: '(?i)^\\s*(Meter)\\s*=\\s*(Bar|Bitmap|Button|Histogram|Image|Line|Rotator|Roundline|String)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.important.rainmeter'}}
+    # Measure
+    {match: '(?i)^\\s*(Measure)\\s*=\\s*(Calc|Cpu|FreeDiskSpace|Loop|(?:Physical|Swap)?Memory|Net|Plugin|Registry|Script|String|(?:Up)?Time)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.important.rainmeter'}}
+    # Options that have specific values
+    {match: '(?i)^\\s*((?:Mask)?ImageFlip)\\s*=\\s*(None|Horizontal|Vertical|Both)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(ToolTipIcon)\\s*=\\s*(Info|Warning|Error|Question|Shield)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*((?:Bar|Graph)Orientation)\\s*=\\s*(Horizontal|Vertical)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(BitmapAlign)\\s*=\\s*(Left|Center|Right)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(GraphStart)\\s*=\\s*(Left|Right)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(StringAlign)\\s*=\\s*((?:Left|Right|Center)(?:|Top|Bottom|Center))\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(StringStyle)\\s*=\\s*(Normal|Bold|Italic|BoldItalic)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(StringCase)\\s*=\\s*(None|Upper|Lower|Proper)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(StringEffect)\\s*=\\s*(None|Shadow|Border)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*((?!InlineSetting1)InlineSetting\\d*)\\s*=\\s*((Face|Size|Color|Weight|CharacterSpacing|Typography|GradientColor|Stretch)(?=\\s*\\|.*)|(Italic|Oblique|Underline|Strikethrough|None)\\s*$)'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(RegHKey)\\s*=\\s*(HKEY_(CURRENT_(CONFIG|USER)|LOCAL_MACHINE|CLASSES_ROOT|(PERFORMANCE|DYN)_DATA))\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+  ]}
 ]
 
 # Storage
