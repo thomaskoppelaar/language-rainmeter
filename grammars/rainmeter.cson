@@ -129,7 +129,7 @@ repository:
 
   # All other - normal variables
   normalVars:
-    match: '(?!#\\*.+?\\*#)#[^#\\s]+#'
+    match: '(?!#\\*.+?\\*#)#[\\w\\d_]+#'
     name: 'variable.rainmeter'
 
   # All the variables combined
