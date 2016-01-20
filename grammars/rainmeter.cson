@@ -145,7 +145,7 @@ patterns: [
     end: '$'
     patterns: [
       {match: '\\s*"?([0-1])"?\\s*$'
-      name: 'value.constant.rainmeter'}
+      captures: {1: {name: 'value.constant.rainmeter'}}}
       {include: '#variables'}
       {include: '#math'}
     ]}
