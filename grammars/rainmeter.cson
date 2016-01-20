@@ -22,6 +22,7 @@ patterns: [
       {include: '#variables'}
       {include: '#bangs'}
       {include: '#math'}
+      {include: '#colors'}
     ]
   ]}
 
@@ -155,6 +156,13 @@ patterns: [
       {include: '#variables'}
       {include: '#math'}
     ]}
+    {begin: '(?i)^\\s*(SolidColor2?|ImageTint|(Bar|Primary|Secondary|Both|HorizontalLine|Font)Color|(?!LineColor1)LineColor\\d*)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {include: '#variables'}
+      {include: '#colors'}
+    ]}
   ]}
 ]
 
@@ -249,6 +257,19 @@ repository:
       patterns: [
         {include: '#variables'}
         {include: '#bangs'}
-      ]
-      }
+      ]}
+    ]
+
+  colors:
+    patterns: [
+      {match: '(?i)(\\d+),\\s*(\\d+),\\s*(\\d+)(?:,\\s*(\\d+))?|([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})?'
+      captures:
+        1: {name: 'color.r.rainmeter'}
+        2: {name: 'color.g.rainmeter'}
+        3: {name: 'color.b.rainmeter'}
+        4: {name: 'color.a.rainmeter'}
+        5: {name: 'color.r.rainmeter'}
+        6: {name: 'color.g.rainmeter'}
+        7: {name: 'color.b.rainmeter'}
+        8: {name: 'color.a.rainmeter'}}
     ]
