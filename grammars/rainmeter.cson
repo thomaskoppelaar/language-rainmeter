@@ -140,10 +140,15 @@ patterns: [
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
     # 1/0 options
-    {match: '(?i)^\\s*(Hidden|AntiAlias|Greyscale|UseExifOrientation|ToolTipType|ToolTipHidden|Flip|BitmapZeroFrame|BitmapExtend|Tile|HorizontalLines|Solid|ControlAngle|Percentual|InvertMeasure|DynamicVariables|Disabled|Paused|IfConditionMode|IfMatchMode|RegExpSubstitute|UpdateRandom|UniqueRandom|Total|Label|Type|IgnoreRemovable|DiskQuota|Cumulative|DaylightSavingTime|AddDaysToHours)\\s*=\\s*"?([0-1])"?\\s*$'
-    captures:
-      1: {name: 'option.rainmeter'}
-      2: {name: 'value.constant.rainmeter'}}
+    {begin: '(?i)^\\s*(Hidden|AntiAlias|Greyscale|UseExifOrientation|ToolTipType|ToolTipHidden|Flip|BitmapZeroFrame|BitmapExtend|Tile|HorizontalLines|Solid|ControlAngle|Percentual|InvertMeasure|DynamicVariables|Disabled|Paused|IfConditionMode|IfMatchMode|RegExpSubstitute|UpdateRandom|UniqueRandom|Total|Label|Type|IgnoreRemovable|DiskQuota|Cumulative|DaylightSavingTime|AddDaysToHours)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {match: '\\s*"?([0-1])"?\\s*$'
+      name: 'value.constant.rainmeter'}
+      {include: '#variables'}
+      {include: '#math'}
+    ]}
     # All other options
     {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Group|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Title|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|Text|(Pre|Post)fix|FontFace|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1|InlinePattern1)Inline(Setting|Pattern)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(H?Key|Value)|ScriptFile|String|TimeStamp|DaylightSavingTime|AddDaysToHours)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
