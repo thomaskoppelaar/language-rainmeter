@@ -10,7 +10,7 @@ patterns: [
   {include: '#general'}
 
   # Variables section
-  {begin: '(?i)^\\s*(\\[\\s*Variables\\s*\\])\\s*$'
+  {begin: '(?i)^\\s*(\\[Variables\\])\\s*$'
   beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
   patterns: [
@@ -26,7 +26,7 @@ patterns: [
   ]}
 
   # Rainmeter section
-  {begin: '(?i)^\\s*(\\[\\s*Rainmeter\\s*\\])\\s*$'
+  {begin: '(?i)^\\s*(\\[Rainmeter\\])\\s*$'
   beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
   patterns: [
@@ -50,7 +50,7 @@ patterns: [
   ]}
 
   # Metadata section
-  {begin: '(?i)^\\s*(\\[\\s*Metadata\\s*\\])\\s*$'
+  {begin: '(?i)^\\s*(\\[Metadata\\])\\s*$'
   beginCaptures: {1: {name: 'predefined.section.rainmeter'}}
   end: '(?=\\s*\\[)'
   patterns: [
@@ -64,7 +64,7 @@ patterns: [
   ]}
 
   # Meters and Measures
-  {begin: '(?i)(?!^\\s*\\[(\\*.+?\\*|Rainmeter|Metadata|Variables)\\]\\s*$)^\\s*\\[[^\\[\\]\\s\\/!#\\"%\\$:]+?\\]\\s*$'
+  {begin: '(?i)(?!^\\s*\\[Rainmeter|Metadata|Variables\\]\\s*$)^\\s*\\[[\\w\\d_]+?\\]\\s*$'
   beginCaptures: {0: {name: 'section.rainmeter'}}
   end: '(?=\\s*\\[)'
   patterns: [
@@ -106,7 +106,7 @@ repository:
 
   # Section variables and their arguments
   sectionVars:
-    begin: '(?!\\[\\*.+?\\*\\])\\[[^\\[\\]\\s\\/!#\\"%\\$:]+'
+    begin: '(?!\\[\\*.+?\\*\\])\\[[\\w\\d_]+'
     beginCaptures: {0: {name: 'section.variable.rainmeter'}}
     end: '\\]'
     endCaptures: {0: {name: 'section.variable.rainmeter'}}
