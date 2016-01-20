@@ -40,7 +40,7 @@ patterns: [
       {include: '#bangs'}
       {include: '#math'}
     ]}
-    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Group|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!(ContextTitle|BlurRegion)1\\s*=)(ContextTitle|BlurRegion)\\d*|Blur)\\s*='
+    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Group|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!(ContextTitle|BlurRegion)1\\s*=)(ContextTitle|BlurRegion)\\d*|Blur|ToolTipHidden)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
