@@ -71,74 +71,74 @@ patterns: [
     {include: '#general'}
     {include: '#meterActionOptions'}
     # Meter
-    {match: '(?i)^\\s*(Meter)\\s*=\\s*(Bar|Bitmap|Button|Histogram|Image|Line|Rotator|Roundline|String)\\s*$'
+    {match: '(?i)^\\s*(Meter)\\s*=\\s*"?(Bar|Bitmap|Button|Histogram|Image|Line|Rotator|Roundline|String)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.important.rainmeter'}}
     # Measure
-    {match: '(?i)^\\s*(Measure)\\s*=\\s*(Calc|Cpu|FreeDiskSpace|Loop|(?:Physical|Swap)?Memory|Net|Plugin|Registry|Script|String|(?:Up)?Time)\\s*$'
+    {match: '(?i)^\\s*(Measure)\\s*=\\s*"?(Calc|Cpu|FreeDiskSpace|Loop|(?:Physical|Swap)?Memory|Net|Plugin|Registry|Script|String|(?:Up)?Time)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.important.rainmeter'}}
     # Plugin
-    {match: '(?i)^\\s*(Plugin)\\s*=\\s*(ActionTimer|AdvancedCPU|AudioLevel|CoreTemp|FileView|FolderInfo|InputText|iTunes|MediaKey|NowPlaying|PerfMon|Ping|Power|Process|Quote|RecycleManager|ResMon|RunCommand|SpeedFan|SysInfo|VirtualDesktops|WebParser|WiFiStatus|Win7Audio|WindowMessage)\\s*$'
+    {match: '(?i)^\\s*(Plugin)\\s*=\\s*"?(ActionTimer|AdvancedCPU|AudioLevel|CoreTemp|FileView|FolderInfo|InputText|iTunes|MediaKey|NowPlaying|PerfMon|Ping|Power|Process|Quote"?|RecycleManager|ResMon|RunCommand|SpeedFan|SysInfo|VirtualDesktops|WebParser|WiFiStatus|Win7Audio|WindowMessage)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.important.rainmeter'}}
     # Options that have specific values
-    {match: '(?i)^\\s*((?:Mask)?ImageFlip)\\s*=\\s*(None|Horizontal|Vertical|Both)\\s*$'
+    {match: '(?i)^\\s*((?:Mask)?ImageFlip)\\s*=\\s*"?(None|Horizontal|Vertical|Both)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(ToolTipIcon)\\s*=\\s*(Info|Warning|Error|Question|Shield)\\s*$'
+    {match: '(?i)^\\s*(ToolTipIcon)\\s*=\\s*"?(Info|Warning|Error|Question|Shield)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*((?:Bar|Graph)Orientation)\\s*=\\s*(Horizontal|Vertical)\\s*$'
+    {match: '(?i)^\\s*((?:Bar|Graph)Orientation)\\s*=\\s*"?(Horizontal|Vertical)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(BitmapAlign)\\s*=\\s*(Left|Center|Right)\\s*$'
+    {match: '(?i)^\\s*(BitmapAlign)\\s*=\\s*"?(Left|Center|Right)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(GraphStart)\\s*=\\s*(Left|Right)\\s*$'
+    {match: '(?i)^\\s*(GraphStart)\\s*=\\s*"?(Left|Right)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(StringAlign)\\s*=\\s*((?:Left|Right|Center)(?:|Top|Bottom|Center))\\s*$'
+    {match: '(?i)^\\s*(StringAlign)\\s*=\\s*"?((?:Left|Right|Center)(?:|Top|Bottom|Center))"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(StringStyle)\\s*=\\s*(Normal|Bold|Italic|BoldItalic)\\s*$'
+    {match: '(?i)^\\s*(StringStyle)\\s*=\\s*"?(Normal|Bold|Italic|BoldItalic)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(StringCase)\\s*=\\s*(None|Upper|Lower|Proper)\\s*$'
+    {match: '(?i)^\\s*(StringCase)\\s*=\\s*"?(None|Upper|Lower|Proper)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(StringEffect)\\s*=\\s*(None|Shadow|Border)\\s*$'
+    {match: '(?i)^\\s*(StringEffect)\\s*=\\s*"?(None|Shadow|Border)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*((?!InlineSetting1)InlineSetting\\d*)\\s*=\\s*((Face|Size|Color|Weight|CharacterSpacing|Typography|GradientColor|Stretch)(?=\\s*\\|.*)|(Italic|Oblique|Underline|Strikethrough|None)\\s*$)'
+    {match: '(?i)^\\s*((?!InlineSetting1)InlineSetting\\d*)\\s*=\\s*"?((Face|Size|Color|Weight|CharacterSpacing|Typography|GradientColor|Stretch)(?=\\s*\\|.*)|(Italic|Oblique|Un"?derline|Strikethrough|None)\\s*$)'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(RegHKey)\\s*=\\s*(HKEY_(CURRENT_(CONFIG|USER)|LOCAL_MACHINE|CLASSES_ROOT|(PERFORMANCE|DYN)_DATA))\\s*$'
+    {match: '(?i)^\\s*(RegHKey)\\s*=\\s*"?(HKEY_(CURRENT_(CONFIG|USER)|LOCAL_MACHINE|CLASSES_ROOT|(PERFORMANCE|DYN)_DATA))"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(AutoScale)\\s*=\\s*(0|[1-2]k?)\\s*$'
+    {match: '(?i)^\\s*(AutoScale)\\s*=\\s*"?(0|[1-2]k?)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(BevelType|PreserveAspectRatio|ClipString)\\s*=\\s*([0-2])\\s*$'
+    {match: '(?i)^\\s*(BevelType|PreserveAspectRatio|ClipString)\\s*=\\s*"?([0-2])"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*(Hidden|AntiAlias|Greyscale|UseExifOrientation|ToolTipType|ToolTipHidden|Flip|BitmapZeroFrame|BitmapExtend|Tile|HorizontalLines|Solid|ControlAngle|Percentual|InvertMeasure|DynamicVariables|Disabled|Paused|IfConditionMode|IfMatchMode|RegExpSubstitute|UpdateRandom|UniqueRandom|Total|Label|Type|IgnoreRemovable|DiskQuota|Cumulative|DaylightSavingTime|AddDaysToHours)\\s*=\\s*([0-1])\\s*$'
+    {match: '(?i)^\\s*(Hidden|AntiAlias|Greyscale|UseExifOrientation|ToolTipType|ToolTipHidden|Flip|BitmapZeroFrame|BitmapExtend|Tile|HorizontalLines|Solid|ControlAngle|Percentual|InvertMeasure|DynamicVariables|Disabled|Paused|IfConditionMode|IfMatchMode|RegExpSubstitute|UpdateRandom|UniqueRandom|Total|Label|Type|IgnoreRemovable|DiskQuota|Cumulative|DaylightSavingTime|AddDaysToHours)\\s*=\\s*"?([0-1])"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
