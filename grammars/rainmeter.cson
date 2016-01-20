@@ -80,6 +80,11 @@ patterns: [
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.important.rainmeter'}}
+    # Plugin
+    {match: '(?i)^\\s*(Plugin)\\s*=\\s*(ActionTimer|AdvancedCPU|AudioLevel|CoreTemp|FileView|FolderInfo|InputText|iTunes|MediaKey|NowPlaying|PerfMon|Ping|Power|Process|Quote|RecycleManager|ResMon|RunCommand|SpeedFan|SysInfo|VirtualDesktops|WebParser|WiFiStatus|Win7Audio|WindowMessage)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.important.rainmeter'}}
     # Options that have specific values
     {match: '(?i)^\\s*((?:Mask)?ImageFlip)\\s*=\\s*(None|Horizontal|Vertical|Both)\\s*$'
     captures:
@@ -122,6 +127,18 @@ patterns: [
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
     {match: '(?i)^\\s*(RegHKey)\\s*=\\s*(HKEY_(CURRENT_(CONFIG|USER)|LOCAL_MACHINE|CLASSES_ROOT|(PERFORMANCE|DYN)_DATA))\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(AutoScale)\\s*=\\s*(0|[1-2]k?)\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(BevelType|PreserveAspectRatio|ClipString)\\s*=\\s*([0-2])\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(Hidden|AntiAlias|Greyscale|UseExifOrientation|ToolTipType|ToolTipHidden|Flip|BitmapZeroFrame|BitmapExtend|Tile|HorizontalLines|Solid|Percentual|InvertMeasure|DynamicVariables|Disabled|Paused|IfConditionMode|IfMatchMode|RegExpSubstitute|UpdateRandom|UniqueRandom|Total|Label|Type|IgnoreRemovable|DiskQuota|Cumulative|DaylightSavingTime|AddDaysToHours)\\s*=\\s*([0-1])\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
