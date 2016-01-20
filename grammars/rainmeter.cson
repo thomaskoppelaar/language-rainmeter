@@ -150,14 +150,14 @@ patterns: [
       {include: '#math'}
     ]}
     # All other options
-    {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Group|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Title|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|Text|(Pre|Post)fix|FontFace|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1|InlinePattern1)Inline(Setting|Pattern)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(H?Key|Value)|ScriptFile|String|TimeStamp|DaylightSavingTime|AddDaysToHours)\\s*='
+    {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Group|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Title|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|(Pre|Post)fix|FontFace|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1|InlinePattern1)Inline(Setting|Pattern)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(H?Key|Value)|ScriptFile|String|TimeStamp|DaylightSavingTime|AddDaysToHours)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
     ]}
     # Number options
-    {begin: '(?i)^\\s*(X|Y|W|H|Padding|UpdateDivider|GradientAngle|TransformationMatrix|Image(Crop|Alpha|Rotate)|ColorMatrix[1-5]|ToolTipWidth|BarBorder|Bitmap(Transition)?Frames|Bitmap(Digits|Separation)|(Primary|Secondary|Both)Image(Crop|Alpha|Rotate|ColorMatrix[1-5])|ScaleMargins|MaskImageRotate|Line(Count|Width|Length)|(?!Scale1)Scale\\d*|Offset(X|Y)|(Start|Rotation)Angle|ValueRemainder|(Start|Length)Shift|FontSize|ClipString(W|H)|Angle|NumOfDecimals|(Max|Min)Value|AverageSize|If(Above|Below|Equal)Value|(?!IfCondition1)IfCondition\\d*|(Low|High)Bound|(Start|End)Value|Increment|LoopCount|SecondsValue)\\s*='
+    {begin: '(?i)^\\s*(Padding|UpdateDivider|GradientAngle|TransformationMatrix|Image(Crop|Alpha|Rotate)|ColorMatrix[1-5]|ToolTipWidth|BarBorder|Bitmap(Transition)?Frames|Bitmap(Digits|Separation)|(Primary|Secondary|Both)Image(Crop|Alpha|Rotate|ColorMatrix[1-5])|ScaleMargins|MaskImageRotate|Line(Count|Width|Length)|(?!Scale1)Scale\\d*|Offset(X|Y)|(Start|Rotation)Angle|ValueRemainder|(Start|Length)Shift|FontSize|ClipString(W|H)|Angle|NumOfDecimals|(Max|Min)Value|AverageSize|If(Above|Below|Equal)Value|(?!IfCondition1)IfCondition\\d*|(Low|High)Bound|(Start|End)Value|Increment|LoopCount|SecondsValue)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
@@ -171,6 +171,44 @@ patterns: [
     patterns: [
       {include: '#variables'}
       {include: '#colors'}
+    ]}
+    # X/Y/W/H options
+    {begin: '(?i)^\\s*(X|Y|W|H)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {match: '(?i)r'
+      name: 'support.function.constant.rainmeter'}
+      {include: '#variables'}
+      {include: '#math'}
+    ]}
+    # Format
+    {begin: '(?i)^\\s*((TimeStamp)?Format)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {match: '%([aAbBcCdDeFgGhHIjmMnprRStTuUVwWxXyYzZ%]|#?[cdHIjmMSUwWxyY]|E?[cCxXyY]|O?[deHImMSuUVwWy])'
+      name: 'support.function.constant.rainmeter'}
+      {include: '#variables'}
+    ]}
+    # Formula
+    {begin: '(?i)^\\s*(Formula)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {match: 'Random|Counter'
+      name: 'support.function.constant.rainmeter'}
+      {include: '#variables'}
+      {include: '#math'}
+    ]}
+    # Text
+    {begin: '(?i)^\\s*(Text)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {match: '%\\d'
+      name: 'support.function.constant.rainmeter'}
+      {include: '#variables'}
     ]}
   ]}
 ]
