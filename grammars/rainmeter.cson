@@ -41,7 +41,7 @@ patterns: [
       {include: '#bangs'}
       {include: '#math'}
     ]}
-    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Group|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!(ContextTitle|BlurRegion)1\\s*=)(ContextTitle|BlurRegion)\\d*|Blur|ToolTipHidden)\\s*='
+    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Group|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!(ContextTitle|BlurRegion)1\\s*=)(ContextTitle|BlurRegion)\\d*|Blur)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
@@ -60,12 +60,16 @@ patterns: [
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
+      {match: '\\d'
+      name: 'constant.numeric.rainmeter'}
+      {match: '(?!\").'
+      name: 'string.rainmeter'}
       {include: '#variables'}
     ]}
   ]}
 
   # Meters and Measures
-  {begin: '(?i)^\\s*(\\[(?!Rainmeter|Variables|Metadata)[\\w\\d_]+\\])\\s*$'
+  {begin: '(?i)^\\s*(\\[(?!Rainmeter|Variables|Metadata)\\w+\\])\\s*$'
   beginCaptures: {1: {name: 'section.rainmeter'}}
   end: '(?=^\\s*\\[)'
   patterns: [
@@ -189,6 +193,8 @@ patterns: [
     patterns: [
       {match: '%([aAbBcCdDeFgGhHIjmMnprRStTuUVwWxXyYzZ%]|#?[cdHIjmMSUwWxyY]|E?[cCxXyY]|O?[deHImMSuUVwWy])'
       name: 'support.function.constant.rainmeter'}
+      {match: '.'
+      name: 'string.rainmeter'}
       {include: '#variables'}
     ]}
     # Formula
@@ -202,13 +208,22 @@ patterns: [
       {include: '#math'}
     ]}
     # Text
-    {begin: '(?i)^\\s*(Text)\\s*='
+    {begin: '(?i)^\\s*((ToolTip)?Text)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {match: '%\\d'
       name: 'support.function.constant.rainmeter'}
       {include: '#variables'}
+      {match: '(?!\").'
+      name: 'string.rainmeter'}
+    ]}
+    {begin: '(?i)^\\s*(Group|ToolTipTitle|(Pre|Post)fix|FontFace|InlinePattern|Substitute|RegKey|String)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {match: '(?!\").'
+      name: 'string.rainmeter'}
     ]}
   ]}
 ]
@@ -239,7 +254,7 @@ repository:
 
   # Section variables and their arguments
   sectionVars:
-    match: '(\\[[\\w\\d_]+)(:(|(?i)X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(,\\d+,?)?|\\d+))?(\\])'
+    match: '(\\[\\w+)(:(|(?i)X|Y|W|H|EscapeRegExp|EncodeURL|Timestamp|(Min|Max)Value|(\\/[+-]?\\d+|%)(,\\d+,?)?|\\d+))?(\\])'
     captures:
       1: {name: 'section.variable.rainmeter'}
       2: {name: 'section.variable.arg.rainmeter'}
@@ -262,7 +277,7 @@ repository:
 
   # All other - normal variables
   normalVars:
-    match: '(?!#\\*.+?\\*#)#[\\w\\d_]+#'
+    match: '(?!#\\*.+?\\*#)#\\w+#'
     name: 'variable.rainmeter'
 
   # All the variables combined
