@@ -62,7 +62,7 @@ patterns: [
     patterns: [
       {match: '\\d'
       name: 'constant.numeric.rainmeter'}
-      {match: '(?!\").'
+      {match: '[^\\d\\n\"#\\[\\]%]+'
       name: 'string.rainmeter'}
       {include: '#variables'}
     ]}
@@ -214,16 +214,16 @@ patterns: [
     patterns: [
       {match: '%\\d'
       name: 'support.function.constant.rainmeter'}
-      {include: '#variables'}
-      {match: '(?!\").'
+      {match: '[^\\n\"#\\[\\]%]+'
       name: 'string.rainmeter'}
+      {include: '#variables'}
     ]}
     {begin: '(?i)^\\s*(Group|ToolTipTitle|(Pre|Post)fix|FontFace|(?!InlinePattern1)InlinePattern\\d*|Substitute|RegKey|String)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
-      {match: '(?!\").'
+      {match: '[^\\n\"#\\[\\]%]+'
       name: 'string.rainmeter'}
     ]}
   ]}
