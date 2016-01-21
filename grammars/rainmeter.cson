@@ -41,12 +41,20 @@ patterns: [
       {include: '#bangs'}
       {include: '#math'}
     ]}
-    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Group|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!(ContextTitle|BlurRegion)1\\s*=)(ContextTitle|BlurRegion)\\d*|Blur)\\s*='
+    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!BlurRegion1)BlurRegion\\d*|Blur)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
       {include: '#math'}
+    ]}
+    {begin: '(?i)^\\s*(Group|(?!ContextTitle1)ContextTitle\\d*)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {include: '#variables'}
+      {match: '[^\\n\"#\\[\\]]+'
+      name: 'string.rainmeter'}
     ]}
   ]}
 
@@ -62,7 +70,7 @@ patterns: [
     patterns: [
       {match: '\\d'
       name: 'constant.numeric.rainmeter'}
-      {match: '[^\\d\\n\"#\\[\\]%]+'
+      {match: '[^\\d\\n\"#\\[\\]]+'
       name: 'string.rainmeter'}
       {include: '#variables'}
     ]}
@@ -223,7 +231,7 @@ patterns: [
     end: '$'
     patterns: [
       {include: '#variables'}
-      {match: '[^\\n\"#\\[\\]%]+'
+      {match: '[^\\n\"#\\[\\]]+'
       name: 'string.rainmeter'}
     ]}
   ]}
