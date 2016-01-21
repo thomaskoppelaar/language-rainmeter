@@ -154,7 +154,7 @@ patterns: [
       {include: '#math'}
     ]}
     # All other options
-    {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Group|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Title|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|(Pre|Post)fix|FontFace|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1|InlinePattern1)Inline(Setting|Pattern)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(H?Key|Value)|ScriptFile|String|TimeStamp|DaylightSavingTime|AddDaysToHours)\\s*='
+    {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1)Inline(Setting)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(HKey|Value)|ScriptFile|TimeStamp|DaylightSavingTime|AddDaysToHours)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
@@ -218,10 +218,11 @@ patterns: [
       {match: '(?!\").'
       name: 'string.rainmeter'}
     ]}
-    {begin: '(?i)^\\s*(Group|ToolTipTitle|(Pre|Post)fix|FontFace|InlinePattern|Substitute|RegKey|String)\\s*='
+    {begin: '(?i)^\\s*(Group|ToolTipTitle|(Pre|Post)fix|FontFace|(?!InlinePattern1)InlinePattern\\d*|Substitute|RegKey|String)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
+      {include: '#variables'}
       {match: '(?!\").'
       name: 'string.rainmeter'}
     ]}
