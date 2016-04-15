@@ -1,2 +1,2 @@
-'atom-workspace':
+'atom-workspace [data-grammar="source rainmeter"]':
   'ctrl-b': 'rainmeter:refresh'
