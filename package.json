@@ -1,5 +1,6 @@
 {
   "name": "language-rainmeter",
+  "main": "./lib/rainmeter.coffee",
   "version": "1.4.0",
   "private": false,
   "author": "NighthawkSLO <jon.kuhar99@gmail.com>",
