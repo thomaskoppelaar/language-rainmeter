@@ -1,0 +1,15 @@
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Rainmeter'
+      'submenu': [
+        {
+          'label': 'Refresh skin'
+          'command': 'rainmeter:refresh'
+        }
+      ]
+    ]
+  }
+]
