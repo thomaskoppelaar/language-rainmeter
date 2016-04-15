@@ -27,3 +27,6 @@ module.exports =
 				rmpath = atom.config.get('language-rainmeter.rainmeterPath')
 				exec("\"#{rmpath}\" !ActivateConfig \"#{config}\" \"#{skin}\"")
 				exec("\"#{rmpath}\" !Refresh \"#{config}\"")
+			else
+				atom.notifications.addWarning 'Not a rainmeter skin',
+					detail: 'You can only refresh skin while in the .ini file'
