@@ -77,7 +77,7 @@ patterns: [
   ]}
 
   # Meters and Measures
-  {begin: '(?i)^\\s*(\\[(?!Rainmeter|Variables|Metadata)\\w+\\])\\s*$'
+  {begin: '(?i)^\\s*(\\[(?!Rainmeter|Variables|Metadata)[^\\s#@%]+\\])\\s*$'
   beginCaptures: {1: {name: 'section.rainmeter'}}
   end: '(?=^\\s*\\[)'
   patterns: [
