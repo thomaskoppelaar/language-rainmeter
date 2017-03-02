@@ -172,7 +172,7 @@ patterns: [
     ]}
 
     # Number options
-    {begin: '(?i)^\\s*(Padding|UpdateDivider|GradientAngle|TransformationMatrix|Image(Crop|Alpha|Rotate)|ColorMatrix[1-5]|ToolTipWidth|BarBorder|Bitmap(Transition)?Frames|Bitmap(Digits|Separation)|(Primary|Secondary|Both)Image(Crop|Alpha|Rotate|ColorMatrix[1-5])|ScaleMargins|MaskImageRotate|Line(Count|Width|Length)|(?!Scale1)Scale\\d*|Offset(X|Y)|(Start|Rotation)Angle|ValueRemainder|(Start|Length)Shift|FontSize|ClipString(W|H)|Angle|NumOfDecimals|(Max|Min)Value|AverageSize|(?!If(Above|Below|Equal)Value1)If(Above|Below|Equal)Value\\d*|(?!IfCondition1)IfCondition\\d*|(?!If(Match|NotMatch)1)If(Match|NotMatch)\\d*|(Low|High)Bound|(Start|End)Value|Increment|LoopCount|SecondsValue)\\s*='
+    {begin: '(?i)^\\s*(Padding|UpdateDivider|GradientAngle|TransformationMatrix|Image(Crop|Alpha|Rotate)|ColorMatrix[1-5]|ToolTipWidth|BarBorder|Bitmap(Transition)?Frames|Bitmap(Digits|Separation)|(Primary|Secondary|Both)Image(Crop|Alpha|Rotate|ColorMatrix[1-5])|ScaleMargins|MaskImageRotate|Line(Count|Width|Length|Start)|(?!Scale1)Scale\\d*|Offset(X|Y)|(Start|Rotation)Angle|ValueRemainder|(Start|Length)Shift|FontSize|ClipString(W|H)|Angle|NumOfDecimals|(Max|Min)Value|AverageSize|(?!If(Above|Below|Equal)Value1)If(Above|Below|Equal)Value\\d*|(?!IfCondition1)IfCondition\\d*|(?!If(Match|NotMatch)1)If(Match|NotMatch)\\d*|(Low|High)Bound|(Start|End)Value|Increment|LoopCount|SecondsValue)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
