@@ -152,15 +152,15 @@ patterns: [
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-      
+
      # Shape options
-    {match: '(?i)^\\s*((?!Shape1)Shape\\d*)\\s*=\\s*"?(Ellipse|Rectangle|Line|Arc|Curve|Path)\\s*'
+    {match: '(?i)^\\s*((?!Shape1\\s*=)Shape\\d*)\\s*=\\s*"?(Ellipse|Rectangle|Line|Arc|Curve|Path|Combine)\\s*'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
       {include: '#variables'}
       {include: '#colors'}
-    {match: '(?i)\\s*(Fill Color|Stroke Color|Stroke(Width|Dashes|DashOffset|DashCap|StartCap|EndCap|LineJoin)|Scale|Rotate|Skew|Offset|TransformOrder|Extend|Fill|(Linear|Radial)Gradient)\\b'
+    {match: '(?i)\\s*(Fill Color|Stroke Color|Stroke(Width|Dashes|DashOffset|DashCap|StartCap|EndCap|LineJoin)|Scale|Rotate|Skew|Offset|TransformOrder|Extend|Fill|(Linear|Radial)Gradient|Union|Intersect|XOR|Exclude)\\b'
     captures:
       1: {name: 'value.constant.rainmeter'}}
 
