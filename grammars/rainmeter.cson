@@ -84,10 +84,11 @@ patterns: [
     {include: '#general'}
     {include: '#meterActionOptions'}
     # Meter
-    {match: '(?i)^\\s*(Meter)\\s*=\\s*"?(Bar|Bitmap|Button|Histogram|Image|Line|Rotator|Roundline|String)"?\\s*$'
+    {match: '(?i)^\\s*(Meter)\\s*=\\s*"?(Bar|Bitmap|Button|Histogram|Image|Line|Rotator|Roundline|String|Shape)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.important.rainmeter'}}
+
     # Measure
     {match: '(?i)^\\s*(Measure)\\s*=\\s*"?(Calc|Cpu|FreeDiskSpace|Loop|(?:Physical|Swap)?Memory|Net|Plugin|Registry|Script|String|(?:Up)?Time)"?\\s*$'
     captures:
@@ -151,6 +152,18 @@ patterns: [
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
+      
+     # Shape options
+    {match: '(?i)^\\s*((?!Shape1)Shape\\d*)\\s*=\\s*"?(Ellipse|Rectangle|Line|Arc|Curve|Path)\\s*'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+      {include: '#variables'}
+      {include: '#colors'}
+    {match: '(?i)\\s*(Fill Color|Stroke Color|Stroke(Width|Dashes|DashOffset|DashCap|StartCap|EndCap|LineJoin)|Scale|Rotate|Skew|Offset|TransformOrder|Extend|Fill|(Linear|Radial)Gradient)\\b'
+    captures:
+      1: {name: 'value.constant.rainmeter'}}
+
     # 1/0 options
     {begin: '(?i)^\\s*(Hidden|AntiAlias|Greyscale|UseExifOrientation|ToolTipType|ToolTipHidden|Flip|BitmapZeroFrame|BitmapExtend|Tile|HorizontalLines|Solid|ControlAngle|Percentual|InvertMeasure|DynamicVariables|Disabled|Paused|IfConditionMode|IfMatchMode|RegExpSubstitute|UpdateRandom|UniqueRandom|Total|Label|Type|IgnoreRemovable|DiskQuota|Cumulative|DaylightSavingTime|AddDaysToHours)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
@@ -162,14 +175,15 @@ patterns: [
       {include: '#math'}
     ]}
     # All other options
-    {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1)Inline(Setting)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(HKey|Value)|ScriptFile|TimeStamp|DaylightSavingTime|AddDaysToHours)\\s*='
+    {begin: '(?i)^\\s*(MeterStyle|(?!MeasureName1)MeasureName\\d*|BevelType|AntiAlias|DynamicVariables|Greyscale|(Mask)?Image(Path|Flip|Name)|UseExifOrientation|ColorMatrixN|ToolTip(Text|Icon|Type|Hidden)|BarImage|BarOrientation|Flip|Bitmap(Image|ZeroFrame|Extend)|ButtonImage|Autoscale|Graph(Start|Orientation)|(Primary|Secondary|Both)Image(Path|Flip)?|PreserveAspectRatio|Tile|HorizontalLines|GraphStart|GraphOrientation|ControlAngle|String(Align|Style|Case|Effect)|ClipString|Percentual|(?!InlineSetting1)Inline(Setting)\\d*|Disabled|Paused|IfConditionMode|IfMatchMode|Substitute|RegExpSubstitute|(Update|Unique)Random|Processor|Drive|Total|Label|Type|IgnoreRemovable|DiskQuota|Interface|Cumulative|Reg(HKey|Value)|ScriptFile|TimeStamp|DaylightSavingTime|AddDaysToHours|(?!If(Above|Below|Equal)Action1)If(Above|Below|Equal)Action\\d*|(?!If(Match|NotMatch|True|False)Action1)If(Match|NotMatch|True|False)Action\\d*)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
     ]}
+
     # Number options
-    {begin: '(?i)^\\s*(Padding|UpdateDivider|GradientAngle|TransformationMatrix|Image(Crop|Alpha|Rotate)|ColorMatrix[1-5]|ToolTipWidth|BarBorder|Bitmap(Transition)?Frames|Bitmap(Digits|Separation)|(Primary|Secondary|Both)Image(Crop|Alpha|Rotate|ColorMatrix[1-5])|ScaleMargins|MaskImageRotate|Line(Count|Width|Length)|(?!Scale1)Scale\\d*|Offset(X|Y)|(Start|Rotation)Angle|ValueRemainder|(Start|Length)Shift|FontSize|ClipString(W|H)|Angle|NumOfDecimals|(Max|Min)Value|AverageSize|If(Above|Below|Equal)Value|(?!IfCondition1)IfCondition\\d*|(Low|High)Bound|(Start|End)Value|Increment|LoopCount|SecondsValue)\\s*='
+    {begin: '(?i)^\\s*(Padding|UpdateDivider|GradientAngle|TransformationMatrix|Image(Crop|Alpha|Rotate)|ColorMatrix[1-5]|ToolTipWidth|BarBorder|Bitmap(Transition)?Frames|Bitmap(Digits|Separation)|(Primary|Secondary|Both)Image(Crop|Alpha|Rotate|ColorMatrix[1-5])|ScaleMargins|MaskImageRotate|Line(Count|Width|Length|Start)|(?!Scale1)Scale\\d*|Offset(X|Y)|(Start|Rotation)Angle|ValueRemainder|(Start|Length)Shift|FontSize|ClipString(W|H)|Angle|NumOfDecimals|(Max|Min)Value|AverageSize|(?!If(Above|Below|Equal)Value1)If(Above|Below|Equal)Value\\d*|(?!IfCondition1)IfCondition\\d*|(?!If(Match|NotMatch)1)If(Match|NotMatch)\\d*|(Low|High)Bound|(Start|End)Value|Increment|LoopCount|SecondsValue)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
@@ -322,7 +336,7 @@ repository:
   # All options that require bangs
   meterActionOptions:
     patterns: [
-      {begin: '(?i)^\\s*(((Left|Right|Middle|X(1|2))Mouse(Up|Down|DoubleClick)|Mouse(Over|Leave|Scroll(Up|Down|Left|Right))|OnUpdate)Action|MouseActionCursor(Name)?)\\s*='
+      {begin: '(?i)^\\s*(((Left|Right|Middle|X(1|2))Mouse(Up|Down|DoubleClick)|Mouse(Over|Leave|Scroll(Up|Down|Left|Right))|OnUpdate)Action|(?!If(Above|Below|Equal)Action1)If(Above|Below|Equal)Action\\d*|(?!If(Match|NotMatch)Action1)If(Match|NotMatch)Action\\d*|(?!If(True|False)Action1)If(True|False)Action\\d*|MouseActionCursor(Name)?)\\s*='
       beginCaptures: {1: {name: 'option.rainmeter'}}
       end: '$'
       patterns: [
