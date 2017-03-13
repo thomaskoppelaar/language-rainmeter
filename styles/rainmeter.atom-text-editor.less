@@ -1,83 +1,83 @@
 @import "syntax-variables";
 
-.source.rainmeter{
-  .section,
-  .predefined.section{
+.syntax--source.syntax--rainmeter{
+  .syntax--section,
+  .syntax--predefined.syntax--section{
     color: @syntax-color-function;
   }
 
-  .predefined.section{
+  .syntax--predefined.syntax--section{
     font-weight: bold;
   }
 
-  .variable,
-  .predefined.variable{
+  .syntax--variable,
+  .syntax--predefined.syntax--variable{
     color: @syntax-color-variable;
   }
 
-  .predefined.variable{
+  .syntax--predefined.syntax--variable{
     font-style: italic;
   }
 
-  .section.variable{
+  .syntax--section.syntax--variable{
     color: @syntax-color-snippet;
     background-color: rgba(red(@syntax-color-snippet), green(@syntax-color-snippet), blue(@syntax-color-snippet), 0.1);
   }
 
-  .section.variable.arg{
+  .syntax--section.syntax--variable.arg{
     color: @syntax-color-constant;
   }
 
-  .invalid{
+  .syntax--invalid{
     color: white;
     background-color: @syntax-color-removed;
   }
 
-  .support.function{
+  .syntax--support.syntax--function{
     font-style: italic;
   }
 
-  .support.function.constant{
+  .syntax--support.syntax--function.syntax--constant{
     font-style: normal;
   }
 
-  .deprecated.function{
+  .syntax--deprecated.syntax--function{
     color: darken(@syntax-color-modified, 50%);
     background-color: @syntax-color-modified;
     font-style: normal;
   }
 
-  .option{
+  .syntax--option{
     color: @syntax-color-keyword;
   }
 
-  .meter.style.option{
+  .syntax--meter.syntax--style.syntax--option{
     font-style: italic;
   }
 
-  .include{
+  .syntax--include{
     font-style: italic;
     font-weight: bold;
   }
 
-  .value.constant{
+  .syntax--value.syntax--constant{
     color: @syntax-color-class;
   }
 
-  .value.constant.important{
+  .syntax--value.syntax--constant.syntax--important{
     font-weight: bold;
   }
 
-  .color.r{
+  .syntax--color.syntax--r{
     color: #FF5151;
   }
-  .color.g{
+  .syntax--color.syntax--g{
     color: #00D200;
   }
-  .color.b{
+  .syntax--color.syntax--b{
     color: #6262FF;
   }
-  .color.a{
+  .syntax--color.syntax--a{
     color: #AAAAAA;
   }
 }
