@@ -336,7 +336,7 @@ repository:
   # All options that require bangs
   meterActionOptions:
     patterns: [
-      {begin: '(?i)^\\s*(((Left|Right|Middle|X(1|2))Mouse(Up|Down|DoubleClick)|Mouse(Over|Leave|Scroll(Up|Down|Left|Right))|OnUpdate)Action|(?!If(Above|Below|Equal)Action1)If(Above|Below|Equal)Action\\d*|(?!If(Match|NotMatch)Action1)If(Match|NotMatch)Action\\d*|(?!If(True|False)Action1)If(True|False)Action\\d*|MouseActionCursor(Name)?)\\s*='
+      {begin: '(?i)^\\s*(((Left|Right|Middle|X(1|2))Mouse(Up|Down|DoubleClick)|Mouse(Over|Leave|Scroll(Up|Down|Left|Right))|OnUpdate)Action|(?!If(Above|Below|Equal)Action1)If(Above|Below|Equal)Action\\d*|(?!If(Match|NotMatch)Action1)If(Match|NotMatch)Action\\d*|(?!If(True|False)Action1)If(True|False)Action\\d*|MouseActionCursor(Name)?|OnChangeAction)\\s*='
       beginCaptures: {1: {name: 'option.rainmeter'}}
       end: '$'
       patterns: [
