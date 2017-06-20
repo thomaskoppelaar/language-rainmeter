@@ -347,7 +347,7 @@ repository:
 
   colors:
     patterns: [
-      {match: '(?i)(\\d+),\\s*(\\d+),\\s*(\\d+)(?:,\\s*(\\d+))?|(?<=[= \"])([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})?[\\s\"]'
+      {match: '(?i)(\\d+),\\s*(\\d+),\\s*(\\d+)(?:,\\s*(\\d+))?|(?<=[= \"])([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})?'
       captures:
         1: {name: 'color.r.rainmeter'}
         2: {name: 'color.g.rainmeter'}
