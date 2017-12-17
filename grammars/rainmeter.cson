@@ -157,7 +157,7 @@ patterns: [
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
-    {match: '(?i)^\\s*((?!InlineSetting1)InlineSetting\\d*)\\s*=\\s*"?((Face|Size|Color|Weight|CharacterSpacing|Typography|GradientColor|Stretch)(?=\\s*\\|.*)|(Italic|Oblique|Un"?derline|Strikethrough|None)\\s*$)'
+    {match: '(?i)^\\s*((?!InlineSetting1)InlineSetting\\d*)\\s*=\\s*"?((Face|Size|Color|Weight|Case|CharacterSpacing|Italic|Oblique|Underline|Strikethrough|Shadow|Strech|Typography|GradientColor|None)(?=\\s*\\|.*)|\\s*$)'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
@@ -318,6 +318,12 @@ patterns: [
         captures:
           1: {name: 'option.rainmeter'}
           2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(PlayerName|PlayerType)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
 
         # PerfMon
         {begin: '(?i)^\\s*(PerfMonObject|PerfMonCounter|PerfMonInstance|PerfMonDifference)\\s*='
