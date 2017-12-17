@@ -3,7 +3,7 @@
   "main": "./lib/rainmeter.coffee",
   "version": "1.6.3",
   "private": false,
-  "author": "NighthawkSLO <jon.kuhar99@gmail.com>",
+  "author": "MarcoPixel <jon.kuhar99@gmail.com>",
   "description": "Syntax highlighting and snippets for Rainmeter files",
   "repository": "https://github.com/NighthawkSLO/language-rainmeter",
   "license": "MIT",
