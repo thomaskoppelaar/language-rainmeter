@@ -41,14 +41,31 @@ patterns: [
       {include: '#bangs'}
       {include: '#math'}
     ]}
-    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!BlurRegion1)BlurRegion\\d*|Blur)\\s*='
+    {begin: '(?i)^\\s*(DefaultUpdateDivider|AccurateText|DynamicWindowSize|ToolTipHidden|Blur)\\s*='
+    beginCaptures: {1: {name: 'option.rainmeter'}}
+    end: '$'
+    patterns: [
+      {match: '\\s*"?([0-1])"?(?=\\s*$)'
+      captures: {1: {name: 'value.constant.rainmeter'}}}
+      {include: '#variables'}
+      {include: '#math'}
+      ]}
+    {match: '(?i)^\\s*(BackgroundMode)\\s*=\\s*"?(0|1|2|3|4)"?\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {match: '(?i)^\\s*(BevelType)\\s*=\\s*"?(0|1|2)"?\\s*$'
+    captures:
+      1: {name: 'option.rainmeter'}
+      2: {name: 'value.constant.rainmeter'}}
+    {begin: '(?i)^\\s*((Transition)?Update|DefaultUpdateDivider|AccurateText|DynamicWindowSize|Skin(Width|Height)|DragMargins|ToolTipHidden|Image(Crop|Tint|Alpha|Flip|Rotate)|Greyscale|UseExifOrientation|ColorMatrix[1-5]|Background(Mode|Margins)?|SolidColor2?|GradientAngle|BevelType|(?!BlurRegion1)BlurRegion\\d*|Blur|SelectedColor)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
       {include: '#variables'}
       {include: '#math'}
     ]}
-    {begin: '(?i)^\\s*(Group|(?!ContextTitle1)ContextTitle\\d*)\\s*='
+    {begin: '(?i)^\\s*(DragGroup|Group|(?!ContextTitle1)ContextTitle\\d*)\\s*='
     beginCaptures: {1: {name: 'option.rainmeter'}}
     end: '$'
     patterns: [
