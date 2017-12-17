@@ -95,7 +95,7 @@ patterns: [
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.important.rainmeter'}}
     # Plugin
-    {match: '(?i)^\\s*(Plugin)\\s*=\\s*"?(ActionTimer|AdvancedCPU|AudioLevel|CoreTemp|FileView|FolderInfo|InputText|iTunes|MediaKey|NowPlaying|PerfMon|Ping|Power|Process|Quote"?|RecycleManager|ResMon|RunCommand|SpeedFan|SysInfo|VirtualDesktops|WebParser|WiFiStatus|Win7Audio|WindowMessage)"?\\s*$'
+    {match: '(?i)^\\s*(Plugin)\\s*=\\s*"?(ActionTimer|AdvancedCPU|AudioLevel|CoreTemp|FileView|FolderInfo|InputText|iTunes|MediaKey|NowPlaying|PerfMon|PingPlugin|PowerPlugin|Process|QuotePlugin|RecycleManager|ResMon|RunCommand|SpeedFanPlugin|SysInfo|VirtualDesktops|WebParser|WiFiStatus|Win7AudioPlugin|WindowMessagePlugin)"?\\s*$'
     captures:
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.important.rainmeter'}}
@@ -157,7 +157,311 @@ patterns: [
       1: {name: 'option.rainmeter'}
       2: {name: 'value.constant.rainmeter'}}
 
-     # Shape options
+    # ----- PLUGINS -----
+
+        # ActionTimer
+        {begin: '(?i)^\\s*((?!ActionList\\s*=)ActionList\\d*)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {match: 'Repeat|Wait'
+          name: 'support.function.constant.rainmeter'}
+          {include: '#variables'}
+        ]}
+        {begin: '(?i)^\\s*(IgnoreWarnings)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {match: '\\s*"?([0-1])"?(?=\\s*$)'
+          captures: {1: {name: 'value.constant.rainmeter'}}}
+          {include: '#variables'}
+          {include: '#math'}
+        ]}
+
+        # AdvancedCPU plugin
+        {match: '(?i)^\\s*(TopProcess)\\s*=\\s*"?(1|2)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(CPUInclude|CPUExclude|TopProcess)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # AudioLevel + FileView types
+        {match: '(?i)^\\s*(Port)\\s*=\\s*"?(Output|Input)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(Type)\\s*=\\s*"?(RMS|Peak|FFT|FFTFreq|Band|BandFreq|Format|DeviceStatus|DeviceName|DeviceID|DeviceList)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(Channel)\\s*=\\s*"?(L|FL|0|R|FR|1|C|2|LFE|Sub|3|BL|4|BR|5|SL|6|SR|7|Sum|Avg)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(Port|ID|RMSAttack|RMSDecay|RMSGain|PeakAttack|PeakDecay|PeakGain|FFTSize|FFTOverlap|FFTAttack|FFTDecay|Bands|FreqMin|FreqMax|Sensitivity|Parent|Channel|Type|FFTIdx|BandIdx)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # CoreTemp
+        {match: '(?i)^\\s*(SortType)\\s*=\\s*"?(Name|Size|Type|Date)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(SortDateType)\\s*=\\s*"?(Modified|Created|Accessed)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(DateType)\\s*=\\s*"?(Modified|Created|Accessed)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(IconSize)\\s*=\\s*"?(Small|Medium|Large|ExtraLarge)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(CoreTempType)\\s*=\\s*"?(CpuName|CpuSpeed|MaxTemperature|BusSpeed|BusMultiplier|Vid|Tdp|Power|Temperature|TjMax|CoreBusMultiplier|CoreSpeed|Load)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(CoreTempType|CoreTempIndex)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # FileView
+        {begin: '(?i)^\\s*(Recursive|Count|ShowDotDot|ShowFolder|ShowFile|ShowHidden|ShowSystem|HideExtensions|SortAscending|Index|IgnoreCount)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {match: '\\s*"?([0-1])"?(?=\\s*$)'
+          captures: {1: {name: 'value.constant.rainmeter'}}}
+          {include: '#variables'}
+          {include: '#math'}
+        ]}
+        # TODO Add check for Plugin=FileView to fix missing capture
+        {match: '(?i)^\\s*(Type)\\s*=\\s*"?(FolderPath|FolderSize|FileCount|FolderCount|FileName|FileType|FileSize|FileDate|FilePath|PathToFile|Icon)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(Path|FinishAction|Recursive|Count|ShowDotDot|ShowFolder|ShowFile|ShowHidden|ShowSystem|HideExtensions|Extension|SortType|SortDateType|SortAscending|WildcardSearch|Index|IgnoreCount|Type|DateType|IconPath|IconSize)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # FolderInfo
+        {begin: '(?i)^\\s*(IncludeSubFolders|IncludeHiddenFiles|IncludeSystemFiles)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {match: '\\s*"?([0-1])"?(?=\\s*$)'
+          captures: {1: {name: 'value.constant.rainmeter'}}}
+          {include: '#variables'}
+          {include: '#math'}
+        ]}
+        {begin: '(?i)^\\s*(Folder|InfoType|RegExpFilter|IncludeSubFolders|IncludeHiddenFiles|IncludeSystemFiles)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # InputText
+        {begin: '(?i)^\\s*((?!Command\\s*=)Command\\d*)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+          {include: '#bangs'}
+        ]}
+        {begin: '(?i)^\\s*(DefaultValue|Password|InputLimit|InputNumber|TopMost|FocusDismiss|OnDismissAction)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # NowPlaying
+        {match: '(?i)^\\s*(PlayerName)\\s*=\\s*"?(AIMP|CAD|iTunes|CAD|MediaMonkey|Winamp|WMP|Spotify|WLM)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(PlayerType)\\s*=\\s*"?(Artist|Album|Title|Number|Year|Genre|Cover|File|Duration|Position|Progress|Rating|Repeat|Shuffle|State|Status|Volume)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+
+        # PerfMon
+        {begin: '(?i)^\\s*(PerfMonObject|PerfMonCounter|PerfMonInstance|PerfMonDifference)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # Ping
+        {begin: '(?i)^\\s*(DestAddress|UpdateRate|Timeout|TimeoutValue|FinishAction)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # PowerPlugin
+        {match: '(?i)^\\s*(PowerState)\\s*=\\s*"?(ACLine|Status|Status2|Lifetime|Percent|Hz|MHz)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+
+        # Process
+        {begin: '(?i)^\\s*(ProcessName)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # Quote
+        {begin: '(?i)^\\s*(Subfolders)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {match: '\\s*"?([0-1])"?(?=\\s*$)'
+          captures: {1: {name: 'value.constant.rainmeter'}}}
+          {include: '#variables'}
+          {include: '#math'}
+        ]}
+        {begin: '(?i)^\\s*(PathName|Seperator|Subfolders|FileFilter)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # RecycleManager
+        {match: '(?i)^\\s*(RecycleType)\\s*=\\s*"?(Count|Size)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+
+        # ResMon
+        {match: '(?i)^\\s*(ResCountType)\\s*=\\s*"?(GDI|USER|Handle|Window)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+
+        # RunCommand
+        {match: '(?i)^\\s*(State)\\s*=\\s*"?(Hide|Show|Minimized|Maximized)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(OutputType)\\s*=\\s*"?(UTF-16|UTF-8|ANSI)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(Program|Parameter|State|FinishAction|OutputFile|OutputType|StartInFolder|Timeout)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # RunCommand
+        {match: '(?i)^\\s*(SpeedFanType)\\s*=\\s*"?(Temperature|Fan|Voltage)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(SpeedFanScale)\\s*=\\s*"?(C|F|K)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(SpeedFanType|SpeedFanNumber|SpeedFanScale)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # SysInfo
+        {match: '(?i)^\\s*(SysInfoType)\\s*=\\s*"?(COMPUTER_NAME|USER_NAME|USER_LOGONTIME|OS_VERSION|OS_BITS|PAGESIZE|IDLE_TIME|HOST_NAME|DOMAIN_NAME|DOMAINWORKGROUP|DNS_SERVER|ADAPTER_DESCRIPTION|ADAPTER_TYPE|NET_MASK|IP_ADDRESS|GATEWAY_ADDRESS|LAN_CONNECTIVITY|INTERNET_CONNECTIVITY|NUM_MONITORS|SCREEN_SIZE|SCREEN_WIDTH|SCREEN_HEIGHT|VIRTUAL_SCREEN_TOP|VIRTUAL_SCREEN_LEFT|VIRUTAL_SCREEN_WIDTH|VIRUTAL_SCREEN_HEIGHT|WORK_AREA|WORK_AREA_TOP|WORK_AREA_LEFT|WORK_AREA_WIDTH|WORK_AREA_HEIGHT|TIMEZONE_ISDST|TIMEZONE_BIAS|TIMEZONE_STANDART_NAME|TIMEZONE_STANDARD_BIAS|TIMEZONE_DAYLIGHT_NAME|TIMEZONE_DAYLIGHT_BIAS)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(SysInfoData)\\s*=\\s*"?(Best)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(SysInfoType|SysInfoData)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # WebParser
+        {begin: '(?i)^\\s*(Download|LogSubstringErrors|ForceReload)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {match: '\\s*"?([0-1])"?(?=\\s*$)'
+          captures: {1: {name: 'value.constant.rainmeter'}}}
+          {include: '#variables'}
+          {include: '#math'}
+        ]}
+        {match: '(?i)^\\s*(DecodeCharacterReference)\\s*=\\s*"?(0|1|2|3)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(Debug)\\s*=\\s*"?(0|1|2)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(URL|RegExp|StringIndex|StringIndex2|UpdateRate|DecodeCharacterReference|Debug|Debug2File|Download|DownloadFile|ErrorString|LogSubstringErrors|ForceReload|CodePage|ProxyServer|UserAgent)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # WiFiStatus
+        {match: '(?i)^\\s*(WiFiInfoType)\\s*=\\s*"?(SSID|Quality|Encryption|AUTH|PHY|List)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {match: '(?i)^\\s*(WiFiListStyle)\\s*=\\s*"?(0|1|2|3)"?\\s*$'
+        captures:
+          1: {name: 'option.rainmeter'}
+          2: {name: 'value.constant.rainmeter'}}
+        {begin: '(?i)^\\s*(WiFiInfoType|WiFiIntfID|WiFiListStyle|WiFiListLimit)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+        # WindowMessagePlugin
+        {begin: '(?i)^\\s*(WindowName|WindowClass|WindowMessage)\\s*='
+        beginCaptures: {1: {name: 'option.rainmeter'}}
+        end: '$'
+        patterns: [
+          {include: '#variables'}
+        ]}
+
+
+    # ---- END PLUGINS ----
+
+    # Shape options
     {match: '(?i)^\\s*((?!Shape1\\s*=)Shape\\d*)\\s*=\\s*"?(Ellipse|Rectangle|Line|Arc|Curve|Path|Combine)\\s*'
     captures:
       1: {name: 'option.rainmeter'}
