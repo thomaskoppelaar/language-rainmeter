@@ -567,7 +567,7 @@ patterns: [
     patterns: [
       {match: '%\\d'
       name: 'support.function.constant.rainmeter'}
-      {match: '[^\\n\"#\\[\\]%]+'
+      {match: '[^\\n#\\[\\]%]+'
       name: 'string.rainmeter'}
       {include: '#variables'}
     ]}
@@ -576,7 +576,7 @@ patterns: [
     end: '$'
     patterns: [
       {include: '#variables'}
-      {match: '[^\\n\"#\\[\\]]+'
+      {match: '[^\\n#\\[\\]]+'
       name: 'string.rainmeter'}
     ]}
   ]}
@@ -636,7 +636,7 @@ repository:
 
   # All other - normal variables
   normalVars:
-    match: '(?!#\\*.+?\\*#)#\\w+#'
+    match: '(?!#\\*.+?\\*#)#[\\w\\-]+#'
     name: 'variable.rainmeter'
 
   # All the variables combined
