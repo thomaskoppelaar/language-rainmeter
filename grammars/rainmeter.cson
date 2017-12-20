@@ -629,6 +629,11 @@ repository:
     match: '(?i)\\$(Mouse(X|Y)(:%)?|Userinput)\\$'
     name: 'predefined.variable.rainmeter'
 
+  # Character Reference Variables
+  charReferenceVars:
+    match: '(\\[\\\\*.+?\\])'
+    name: 'support.function.constant.rainmeter'
+
   # All other - normal variables
   normalVars:
     match: '(?!#\\*.+?\\*#)#\\w+#'
@@ -641,6 +646,7 @@ repository:
       {include: '#enviromentVars'}
       {include: '#builtInVars'}
       {include: '#eventVars'}
+      {include: '#charReferenceVars'}
       {include: '#normalVars'}
     ]
 
