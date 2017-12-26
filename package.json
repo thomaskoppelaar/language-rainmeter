@@ -1,7 +1,7 @@
 {
   "name": "language-rainmeter",
   "main": "./lib/rainmeter.coffee",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "private": false,
   "author": "MarcoPixel <marcopixel@live.de>",
   "description": "Syntax highlighting and snippets for Rainmeter files",
