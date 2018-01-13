@@ -2,6 +2,10 @@
 
 Adds syntax highlighting for Rainmeter files in Atom.
 
+## Screenshot
+
+![Default Theme Screenshot](https://raw.githubusercontent.com/MarcoPixel/marcopixel.github.io/master/img/Atom.png "Default Theme Screenshot")
+
 ## Install
 
 ```bash
