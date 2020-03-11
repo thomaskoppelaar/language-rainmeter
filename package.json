@@ -5,7 +5,7 @@
   "private": false,
   "author": "MarcoPixel <marcopixel@live.de>",
   "description": "Syntax highlighting and snippets for Rainmeter files",
-  "repository": "https://github.com/MarcoPixel/language-rainmeter",
+  "repository": "https://github.com/thomaskoppelaar/language-rainmeter",
   "license": "MIT",
   "engines": {
     "atom": ">=0.50.0"
