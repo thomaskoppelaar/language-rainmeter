@@ -3,7 +3,7 @@
   "main": "./lib/rainmeter.coffee",
   "version": "1.7.4",
   "private": false,
-  "author": "MarcoPixel <marcopixel@live.de>",
+  "author": "thomaskoppelaar <thomaskoppelaar@protonmail.com>",
   "description": "Syntax highlighting and snippets for Rainmeter files",
   "repository": "https://github.com/thomaskoppelaar/language-rainmeter",
   "license": "MIT",

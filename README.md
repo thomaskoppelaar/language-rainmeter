@@ -34,3 +34,5 @@ If you find any bugs or issues, please report them [here](https://github.com/Mar
 # Authors  
 
 **Original author:** NighthawkSLO (https://github.com/NighthawkSLO)  
+**Main contributor:** Marcopixel (https://github.com/marcopixel)    
+**Current maintainer:** Thomaskoppelaar (https://github.com/thomaskoppelaar)
